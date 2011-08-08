@@ -2,10 +2,67 @@
 <html>
   <head>
     <title>SeattleVue</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    	html { height: 100% }
+    	body { height: 100%; margin: 0; padding: 0 }
+    	#map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+    	src="http://maps.googleapis.com/maps/api/js?sensor=false">
+	</script>
+	<script type="text/javascript">
+			function initialize() {
+			geocoder = new google.maps.Geocoder();
+			var latlng = new google.maps.LatLng(47.640320, -122.302036);
+			var myOptions = {
+			zoom : 12,
+			center : latlng,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+			codeAddress("Seattle Public Library, Montlake Branch", "2401 24th Ave E, Seattle, WA 98112");
+			}
+
+			function codeAddress(point_of_interest, address) {
+				//alert(address);
+				geocoder.geocode({
+				'address' : address
+				}, function(results, status) {
+					if(status == google.maps.GeocoderStatus.OK) {
+						// map.setCenter(results[0].geometry.location);
+						var contentString = 
+							'<div id="content">' + 
+							point_of_interest + 
+							'<br />' + 
+							results[0].formatted_address + 
+							'</div>';
+	
+						var infowindow = new google.maps.InfoWindow({
+						content: contentString
+						});
+		
+						var marker = new google.maps.Marker({
+							map : map,
+							position : results[0].geometry.location,
+							title : address
+						});
+			
+						google.maps.event.addListener(marker, 'click', function() {
+							infowindow.open(map, marker);
+						});
+						
+					} else {
+						alert("Geocode was not successful for the following reason: " + status);
+					}
+				});
+			}
+		</script>
   </head>
-  <body>
+  <body onload="initialize()">
     <div id="page">
     	SeattleVue.
     </div>
+    <div id="map_canvas" style="width:100%; height:100%"></div>
   </body>
 </html>
