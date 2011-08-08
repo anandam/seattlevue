@@ -21,8 +21,36 @@
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-			codeAddress("Seattle Public Library, Montlake Branch", "2401 24th Ave E, Seattle, WA 98112");
-			}
+			codeAddress(
+				"Seattle Public Library, Montlake Branch", 
+				"2401 24th Ave E, Seattle, WA 98112"
+				);
+			codeAddress(
+				"Guanaco's Tacos Pupuseria - University District", 
+				"4106 Brooklyn Ave NE, Seattle, WA 98105"
+				);
+			codeAddress(
+				"Rancho Bravo", 
+				"1001 E Pine St, Seattle, WA 98122"
+				);	
+			codeAddress(
+				"Ezell's Famous Chicken", 
+				"501 23rd Ave, Seattle, WA 98122"
+				);				
+			codeAddress(
+				"Samurai Noodle", 
+				"414 Broadway E, Seattle, WA 98102"
+				);
+			codeAddress(
+				"Seven Stars Pepper Szechuan Restaurant", 
+				"1207 S Jackson St, Seattle, WA 98144"
+				);					
+			codeAddress(
+				"Paseo", 
+				"4225 Fremont Ave N , Seattle, WA 98103"
+				);					
+				
+			}		
 
 			function codeAddress(point_of_interest, address) {
 				//alert(address);
@@ -45,7 +73,7 @@
 						var marker = new google.maps.Marker({
 							map : map,
 							position : results[0].geometry.location,
-							title : address
+							title : point_of_interest
 						});
 			
 						google.maps.event.addListener(marker, 'click', function() {
@@ -60,9 +88,9 @@
 		</script>
   </head>
   <body onload="initialize()">
-    <div id="page">
+<!--     <div id="page">
     	SeattleVue.
-    </div>
+    </div> -->    
     <div id="map_canvas" style="width:100%; height:100%"></div>
   </body>
 </html>
