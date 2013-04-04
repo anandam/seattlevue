@@ -12,6 +12,9 @@
     	src="http://maps.googleapis.com/maps/api/js?sensor=false">
 	</script>
 	<script type="text/javascript">
+
+		var currentInfoWindow;
+
 			function initialize() {
 			geocoder = new google.maps.Geocoder();
 			var latlng = new google.maps.LatLng(47.640320, -122.302036);
@@ -21,164 +24,171 @@
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
 			codeAddress(
 				"Cafe Lago", 
 				"http://www.cafelago.com",
-				"2305 24th Ave E  Seattle, WA 98112",
+				"2305 24th Avenue East, Seattle, WA 98112, USA",
+				new google.maps.LatLng(47.6397303, -122.30207999999999),
 				"Lasagna, brunch pizza"
 				);
 			codeAddress(
 				"Rancho Bravo", 
 				"http://www.facebook.com/pages/Rancho-Bravo-Tacos/117495694943999",
-				"1001 E Pine St, Seattle, WA 98122",
+				"1001 East Pine Street, Seattle, WA 98122, USA",
+				new google.maps.LatLng(47.614991, -122.319053),
 				"Al Pastor tacos, tamales"
 				);	
 			codeAddress(
 				"Ezell's Famous Chicken", 
 				"http://www.ezellschicken.com",
-				"501 23rd Ave, Seattle, WA 98122",
+				"501 23rd Avenue, Seattle, WA 98122, USA",
+				new google.maps.LatLng(47.606383, -122.30310299999996),
 				"Spicy fried chicken, fried okra"
 				);				
 			codeAddress(
 				"Samurai Noodle", 
 				"http://www.yelp.com/biz/seven-stars-pepper-szechuan-restaurant-seattle",
-				"414 Broadway E, Seattle, WA 98102",
+				"414 Broadway East, Seattle, WA 98102, USA",
+				new google.maps.LatLng(47.622461, -122.3207855),
 				"Chilli green onion ramen, Tonkotsu from hell"
 				);
 			codeAddress(
 				"Seven Stars Pepper Szechuan Restaurant", 
 				"http://www.yelp.com/biz/seven-stars-pepper-szechuan-restaurant-seattle",
-				"1207 S Jackson St, Seattle, WA 98144",
+				"1207 South Jackson Street, Seattle, WA 98144, USA",
+				new google.maps.LatLng(47.5991848, -122.31689510000001),
 				"Prawns and octopus in pickled pepper sauce, Chongqing chicken"
 				);					
 			codeAddress(
 				"Paseo", 
 				"http://www.paseoseattle.com",
-				"4225 Fremont Ave N , Seattle, WA 98103",
+				"4225 Fremont Avenue North, Seattle, WA 98103, USA",
+				new google.maps.LatLng(47.6586175, -122.35015069999997),
 				"Caribbean roast sandwich"
 				);					
 			codeAddress(
 				"Moksha Indian Cuisine",
 				"http://www.mokshadining.com",
-				"515 Bellevue Square, Bellevue, Wa 98004",
+				"515 Bellevue Square, The Bellevue Collection, Bellevue, WA 98004, USA",
+				new google.maps.LatLng(47.6170394, -122.20191080000001),
 				"Lamb Karaikudi, Cilantro-Mustard Seed Prawns"
 				);
 			codeAddress(
 				"Barking Frog",
 				"http://www.willowslodge.com/barking_frog/",
-				"14580 NE 145th Street, Woodinville, WA 98072",
+				"14580 Northeast 145th Street, Woodinville, WA 98072, USA",
+				new google.maps.LatLng(47.7337578, -122.14697369999999),
 				"Grand Marnier prawns, Penn Cove mussels & chorizo"
 			        );	
 			codeAddress(
 				"Harvest Vine",
 				"http://www.harvestvine.com",
-				"2701 E Madison, Seattle, WA 98122",
+				"2701 East Madison Street, Seattle, WA 98112, USA",
+				new google.maps.LatLng(47.622527, -122.29711299999997),
 				"Everything!"
 				);
 			codeAddress(
 				"Toulouse Petit",
 				"http://toulousepetit.com",
-				"601 Queen Anne Avenue North, Seattle, WA 98109",
+				"601 Queen Anne Avenue North, Seattle, WA 98109, USA",
+				new google.maps.LatLng(47.6248327, -122.35711279999998),
 				"Jambalaya, beignets"
 				);
 			codeAddress(
 				"Kickin' boot whiskey kitchen",
 				"http://kickinboot.com",
-				"5309 22nd Ave NW, Seattle, WA 98107",
+				"5309 22nd Avenue Northwest, Seattle, WA 98107, USA",
+				new google.maps.LatLng(47.6670974, -122.38489170000003),
 				"Smokestack sandwich, seafood gumbo"
 				);
 			codeAddress(
 				"Kabab House",
 				"http://www.kababhouse.com",
-				"13108 NE 70th Place, Kirkland WA 98033",
+				"13108 Northeast 70th Place, Kirkland, WA, USA",
+				new google.maps.LatLng(47.66709609999999, -122.16513250000003),
 				"Lamb biriyani, chicken boti kabab"
 				);
 			codeAddress(
 				"Via Tribunali",
 				"http://www.viatribunali.net",
-				"913 E Pike Street, Seattle, WA 98122",
+				"913 East Pike Street, Seattle, WA 98122, USA",
+				new google.maps.LatLng(47.6139807, -122.32003559999998),
 				"Lupino, salame"
 				);
 			codeAddress(
 				"La Carta de Oaxaca",
 				"http://www.lacartadeoaxaca.com",
-				"5431 Ballard Avenue NW, Seattle, WA 98107",
+				"5431 Ballard Avenue Northwest, Seattle, WA 98107, USA",
+				new google.maps.LatLng(47.6681458, -122.3857779),
 				"Lamb birria, mole negro oaxaqueno"
 				);
 			codeAddress(
 				"O'Asian Kitchen",
 				"http://oasiankitchen.com",
-				"800 5th Avenue, Suite Plaza 1, Seattle, WA  98104",
+				"800 5th Avenue #1, Seattle, WA 98104, USA",
+				new google.maps.LatLng(47.60572810000001, -122.33046519999999),
 				"Dim sum"
 				);
 			codeAddress(
 				"Persepolis Grill",
 				"http://www.persepolisgrill.com",
-				"5517 University Way, Seattle, WA 98105",
+				"5517 University Way Northeast, Seattle, WA 98105, USA",
+				new google.maps.LatLng(47.66905449999999, -122.31319819999999),
 				"Kashk-e-Bademjan, joojeh kabob"
 				);
 			codeAddress(
 				"Shiro's Shushi",
 				"http://www.shiros.com",
-				"2401 2nd Ave, Seattle, WA 98121",
+				"2401 2nd Avenue, Seattle, WA 98121, USA",
+				new google.maps.LatLng(47.6147787, -122.34730509999997),
 				"Tuna Sashimi, Octopus nigiri"
 				);
 			codeAddress(
 				"Brave Horse Tavern",
 				"http://bravehorsetavern.com",
-				"310 Terry Avenue North, Seattle, WA 98109",
+				"310 Terry Avenue North, Seattle, WA 98109, USA",
+				new google.maps.LatLng(47.621449, -122.336772),
 				"Burger with fried egg, grilled rosemary chicken burger"
 				);
 
 			}		
 
-			function codeAddress(point_of_interest, url, address, notes) {
-				//alert(address);
-				geocoder.geocode({
-				'address' : address
-				}, function(results, status) {
-					if(status == google.maps.GeocoderStatus.OK) {
-						// map.setCenter(results[0].geometry.location);
-						var contentString = 
-							'<div id="content">' + 
-							'<a href="' +
-							url +
-							'">' +
-							point_of_interest + 
-							'</a>' +
-							'<br />' + 
-							'<small>' +
-							results[0].formatted_address + 
-							'</small>' +
-							'<br /><br />' +
-							notes +
-							'</div>';
+			function codeAddress(point_of_interest, url, address, marker_position, notes) {
+					var contentString = 
+						'<div id="content">' + 
+						'<a href="' +
+						url +
+						'">' +
+						point_of_interest + 
+						'</a>' +
+						'<br />' + 
+						'<small>' +
+						address + 
+						'</small>' +
+						'<br /><br />' +
+						notes +
+						'</div>';
+
+					var infowindow = new google.maps.InfoWindow({
+					content: contentString
+					});
 	
-						var infowindow = new google.maps.InfoWindow({
-						content: contentString
-						});
+					var marker = new google.maps.Marker({
+						map : map,
+						position : marker_position,
+						title : point_of_interest
+					});
 		
-						var marker = new google.maps.Marker({
-							map : map,
-							position : results[0].geometry.location,
-							title : point_of_interest
-						});
-			
-						google.maps.event.addListener(marker, 'click', function() {
-							infowindow.open(map, marker);
-						});
-						
-					} else {
-						alert("Geocode was not successful for the following reason: " + status);
-					}
-				});
+					google.maps.event.addListener(marker, 'click', function() {
+						if (currentInfoWindow) currentInfoWindow.close();
+						currentInfoWindow = infowindow;
+						infowindow.open(map, marker);
+					});
 			}
 		</script>
   </head>
   <body onload="initialize()">
-<!--     <div id="page">
-    	SeattleVue.
-    </div> -->    
     <div id="top_header" style="height:3em">
 	    <center><h1>SEATTLE<small>-belle</small>VUE Best Eats</h1></center>
     </div>

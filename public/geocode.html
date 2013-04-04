@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geocode</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    	html { height: 100% }
+    	body { height: 100%; margin: 0; padding: 0; font-family:Arial, Helvetica, sans-serif }
+    	#map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+    	src="http://maps.googleapis.com/maps/api/js?sensor=false">
+	</script>
+	<script type="text/javascript">
+			function geocode() {
+			geocoder = new google.maps.Geocoder();
+
+			var addressToGeoCode = document.address_form.address_text.value; 
+
+			geocoder.geocode({
+			'address' : addressToGeoCode
+			}, function(results, status) {
+				if(status == google.maps.GeocoderStatus.OK) {
+				document.getElementById("results").innerHTML =
+						'Formatted Address: ' +
+						results[0].formatted_address + 
+						'<br />' +
+						'Location: new google.maps.LatLng' +
+						results[0].geometry.location
+						;
+					
+				} else {
+					alert("Geocode was not successful for the following reason: " + status);
+				}
+			});
+
+			return false;
+			}
+		</script>
+  </head>
+  <body onload="initialize()">
+	  <div id="input_form">
+		  <form name="address_form" action="" onsubmit="geocode(); return false;">
+			  <input type="text" size="120" name="address_text">
+			  <input type="submit" value="Geocode">
+		  </form>
+		  <br />
+	</div>
+    <div id="results"></div>
+  </body>
+</html>
