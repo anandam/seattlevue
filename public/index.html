@@ -9,7 +9,13 @@
     <style type="text/css">
     	html { height: 100% }
     	body { height: 100%; margin: 0; padding: 0; font-family:Arial, Helvetica, sans-serif }
-    	#map_canvas { height: 100% }
+	#top_header { height:3em }
+	#place_list {width:20%; height: 100%; float:left; font-size:12px; text-align: right; }
+	#place_list a:link {text-decoration:none; color: black;}
+	#place_list a:visited {text-decoration:none; color: black;}
+	#place_list a:hover {text-decoration:underline; color: blue;}
+	#place_list a:active {text-decoration:underline; color: blue;}
+    	#map_canvas { height: 100%}
     </style>
     <script type="text/javascript"
     	src="http://maps.googleapis.com/maps/api/js?sensor=false">
@@ -17,6 +23,7 @@
 	<script type="text/javascript">
 
 		var currentInfoWindow;
+		var markers = new Array();
 
 			function initialize() {
 			geocoder = new google.maps.Geocoder();
@@ -57,7 +64,7 @@
 				"Chilli green onion ramen, Tonkotsu from hell"
 				);
 			codeAddress(
-				"Seven Stars Pepper Szechuan Restaurant", 
+				"Seven Stars Pepper Szechuan", 
 				"http://www.yelp.com/biz/seven-stars-pepper-szechuan-restaurant-seattle",
 				"1207 South Jackson Street, Seattle, WA 98144, USA",
 				new google.maps.LatLng(47.5991848, -122.31689510000001),
@@ -99,7 +106,7 @@
 				"Jambalaya, beignets"
 				);
 			codeAddress(
-				"Kickin' boot whiskey kitchen",
+				"Kickin' Boot Whiskey Kitchen",
 				"http://kickinboot.com",
 				"5309 22nd Avenue Northwest, Seattle, WA 98107, USA",
 				new google.maps.LatLng(47.6670974, -122.38489170000003),
@@ -154,6 +161,20 @@
 				new google.maps.LatLng(47.621449, -122.336772),
 				"Burger with fried egg, grilled rosemary chicken burger"
 				);
+			codeAddress(
+				"Tavern Law",
+				"http://www.tavernlaw.com",
+				"1406 12th Avenue, Seattle, WA 98122, USA",
+				new google.maps.LatLng(47.613293, -122.3166703),
+				"Any cocktail"
+				);
+			codeAddress(
+					"Rover's",
+					"http://thechefinthehat.com/rovers/",
+					"2808 East Madison Street, Seattle, WA 98112, USA",
+					new google.maps.LatLng(47.6238636, -122.29590189999999),
+					"Degustation, Egg with Caviar"
+				   );
 
 			}		
 
@@ -176,27 +197,51 @@
 					var infowindow = new google.maps.InfoWindow({
 					content: contentString
 					});
-	
+
 					var marker = new google.maps.Marker({
 						map : map,
 						position : marker_position,
 						title : point_of_interest
 					});
-		
+					
+					markers.push(marker);
+
 					google.maps.event.addListener(marker, 'click', function() {
 						if (currentInfoWindow) currentInfoWindow.close();
 						currentInfoWindow = infowindow;
 						infowindow.open(map, marker);
 					});
+
+					document.getElementById("place_list").innerHTML +=
+						'<a href="javascript:clickMarker(' + (markers.length-1) + ')">' +
+						point_of_interest +
+						'</a>&nbsp;&nbsp;<br />';
+
+					//google.maps.event.addListener(marker, 'mouseover', function() {
+							//if (currentInfoWindow) currentInfoWindow.close();
+							//currentInfoWindow = infowindow;
+							//infowindow.open(map, marker);
+							//});
+
+					//google.maps.event.addListener(marker, 'mouseout', function() {
+							//if (currentInfoWindow) currentInfoWindow.close();
+							//currentInfoWindow = null;
+							//infowindow.close();
+							//});
+			}
+
+			function clickMarker(infoIndex) {
+					google.maps.event.trigger(markers[infoIndex], "click");
 			}
 		</script>
   </head>
   <body onload="initialize()">
-    <div id="top_header" style="height:3em">
+    <div id="top_header">
 	    <br />
 	    <center><b>SEATTLE<small>-belle</small>VUE Best Eats</b></center>
 	    <br />
     </div>
-    <div id="map_canvas" style="width:100%"></div>
+    <div id="place_list"></div>
+    <div id="map_canvas" style="width:80%; float: right;"></div>
   </body>
 </html>
