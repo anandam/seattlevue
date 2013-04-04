@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
     	html { height: 100% }
-    	body { height: 100%; margin: 0; padding: 0 }
+    	body { height: 100%; margin: 0; padding: 0; font-family:Arial, Helvetica, sans-serif }
     	#map_canvas { height: 100% }
     </style>
     <script type="text/javascript"
@@ -16,7 +16,7 @@
 			geocoder = new google.maps.Geocoder();
 			var latlng = new google.maps.LatLng(47.640320, -122.302036);
 			var myOptions = {
-			zoom : 11,
+			zoom : 12,
 			center : latlng,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 			};
@@ -87,6 +87,49 @@
 				"5309 22nd Ave NW, Seattle, WA 98107",
 				"Smokestack sandwich, seafood gumbo"
 				);
+			codeAddress(
+				"Kabab House",
+				"http://www.kababhouse.com",
+				"13108 NE 70th Place, Kirkland WA 98033",
+				"Lamb biriyani, chicken boti kabab"
+				);
+			codeAddress(
+				"Via Tribunali",
+				"http://www.viatribunali.net",
+				"913 E Pike Street, Seattle, WA 98122",
+				"Lupino, salame"
+				);
+			codeAddress(
+				"La Carta de Oaxaca",
+				"http://www.lacartadeoaxaca.com",
+				"5431 Ballard Avenue NW, Seattle, WA 98107",
+				"Lamb birria, mole negro oaxaqueno"
+				);
+			codeAddress(
+				"O'Asian Kitchen",
+				"http://oasiankitchen.com",
+				"800 5th Avenue, Suite Plaza 1, Seattle, WA  98104",
+				"Dim sum"
+				);
+			codeAddress(
+				"Persepolis Grill",
+				"http://www.persepolisgrill.com",
+				"5517 University Way, Seattle, WA 98105",
+				"Kashk-e-Bademjan, joojeh kabob"
+				);
+			codeAddress(
+				"Shiro's Shushi",
+				"http://www.shiros.com",
+				"2401 2nd Ave, Seattle, WA 98121",
+				"Tuna Sashimi, Octopus nigiri"
+				);
+			codeAddress(
+				"Brave Horse Tavern",
+				"http://bravehorsetavern.com",
+				"310 Terry Avenue North, Seattle, WA 98109",
+				"Burger with fried egg, grilled rosemary chicken burger"
+				);
+
 			}		
 
 			function codeAddress(point_of_interest, url, address, notes) {
@@ -136,6 +179,9 @@
 <!--     <div id="page">
     	SeattleVue.
     </div> -->    
-    <div id="map_canvas" style="width:100%; height:100%"></div>
+    <div id="top_header" style="height:3em">
+	    <center><h1>SEATTLE<small>-belle</small>VUE Best Eats</h1></center>
+    </div>
+    <div id="map_canvas" style="width:100%"></div>
   </body>
 </html>
