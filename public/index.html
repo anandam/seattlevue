@@ -16,43 +16,80 @@
 			geocoder = new google.maps.Geocoder();
 			var latlng = new google.maps.LatLng(47.640320, -122.302036);
 			var myOptions = {
-			zoom : 12,
+			zoom : 11,
 			center : latlng,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 			codeAddress(
 				"Cafe Lago", 
-				"2305 24th Ave E  Seattle, WA 98112"
-				);
-			codeAddress(
-				"Guanaco's Tacos Pupuseria - University District", 
-				"4106 Brooklyn Ave NE, Seattle, WA 98105"
+				"http://www.cafelago.com",
+				"2305 24th Ave E  Seattle, WA 98112",
+				"Lasagna, brunch pizza"
 				);
 			codeAddress(
 				"Rancho Bravo", 
-				"1001 E Pine St, Seattle, WA 98122"
+				"http://www.facebook.com/pages/Rancho-Bravo-Tacos/117495694943999",
+				"1001 E Pine St, Seattle, WA 98122",
+				"Al Pastor tacos, tamales"
 				);	
 			codeAddress(
 				"Ezell's Famous Chicken", 
-				"501 23rd Ave, Seattle, WA 98122"
+				"http://www.ezellschicken.com",
+				"501 23rd Ave, Seattle, WA 98122",
+				"Spicy fried chicken, fried okra"
 				);				
 			codeAddress(
 				"Samurai Noodle", 
-				"414 Broadway E, Seattle, WA 98102"
+				"http://www.yelp.com/biz/seven-stars-pepper-szechuan-restaurant-seattle",
+				"414 Broadway E, Seattle, WA 98102",
+				"Chilli green onion ramen, Tonkotsu from hell"
 				);
 			codeAddress(
 				"Seven Stars Pepper Szechuan Restaurant", 
-				"1207 S Jackson St, Seattle, WA 98144"
+				"http://www.yelp.com/biz/seven-stars-pepper-szechuan-restaurant-seattle",
+				"1207 S Jackson St, Seattle, WA 98144",
+				"Prawns and octopus in pickled pepper sauce, Chongqing chicken"
 				);					
 			codeAddress(
 				"Paseo", 
-				"4225 Fremont Ave N , Seattle, WA 98103"
+				"http://www.paseoseattle.com",
+				"4225 Fremont Ave N , Seattle, WA 98103",
+				"Caribbean roast sandwich"
 				);					
-				
+			codeAddress(
+				"Moksha Indian Cuisine",
+				"http://www.mokshadining.com",
+				"515 Bellevue Square, Bellevue, Wa 98004",
+				"Lamb Karaikudi, Cilantro-Mustard Seed Prawns"
+				);
+			codeAddress(
+				"Barking Frog",
+				"http://www.willowslodge.com/barking_frog/",
+				"14580 NE 145th Street, Woodinville, WA 98072",
+				"Grand Marnier prawns, Penn Cove mussels & chorizo"
+			        );	
+			codeAddress(
+				"Harvest Vine",
+				"http://www.harvestvine.com",
+				"2701 E Madison, Seattle, WA 98122",
+				"Everything!"
+				);
+			codeAddress(
+				"Toulouse Petit",
+				"http://toulousepetit.com",
+				"601 Queen Anne Avenue North, Seattle, WA 98109",
+				"Jambalaya, beignets"
+				);
+			codeAddress(
+				"Kickin' boot whiskey kitchen",
+				"http://kickinboot.com",
+				"5309 22nd Ave NW, Seattle, WA 98107",
+				"Smokestack sandwich, seafood gumbo"
+				);
 			}		
 
-			function codeAddress(point_of_interest, address) {
+			function codeAddress(point_of_interest, url, address, notes) {
 				//alert(address);
 				geocoder.geocode({
 				'address' : address
@@ -61,9 +98,17 @@
 						// map.setCenter(results[0].geometry.location);
 						var contentString = 
 							'<div id="content">' + 
+							'<a href="' +
+							url +
+							'">' +
 							point_of_interest + 
+							'</a>' +
 							'<br />' + 
+							'<small>' +
 							results[0].formatted_address + 
+							'</small>' +
+							'<br /><br />' +
+							notes +
 							'</div>';
 	
 						var infowindow = new google.maps.InfoWindow({
