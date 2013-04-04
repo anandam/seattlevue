@@ -18,10 +18,75 @@
 	#place_list a:active {text-decoration:underline; color: blue;}
     	#map_canvas { height: 100%}
     </style>
+    </head>
+  <body onload="initialize()">
+    <div id="top_header">
+	    <br />
+	    <center>SEATTLE<small>-belle</small>VUE Best Eats</center>
+	    <br />
+    </div>
+    <div id="place_list"></div>
+    <div id="map_canvas" style="width:80%; float: right;"></div>
     <script type="text/javascript"
     	src="http://maps.googleapis.com/maps/api/js?sensor=false">
 	</script>
 	<script type="text/javascript">
+
+			function codeAddress(point_of_interest, url, address, marker_position, notes) {
+					var contentString = 
+						'<div id="content">' + 
+						'<a href="' +
+						url +
+						'">' +
+						point_of_interest + 
+						'</a>' +
+						'<br />' + 
+						'<small>' +
+						address + 
+						'</small>' +
+						'<br /><br />' +
+						notes +
+						'</div>';
+
+					var infowindow = new google.maps.InfoWindow({
+					content: contentString
+					});
+
+					var marker = new google.maps.Marker({
+						map : map,
+						position : marker_position,
+						title : point_of_interest
+					});
+					
+					markers.push(marker);
+
+					google.maps.event.addListener(marker, 'click', function() {
+						if (currentInfoWindow) currentInfoWindow.close();
+						currentInfoWindow = infowindow;
+						infowindow.open(map, marker);
+					});
+
+					document.getElementById("place_list").innerHTML +=
+						'<p><a href="javascript:clickMarker(' + (markers.length-1) + ')">' +
+						point_of_interest +
+						'</a></p>';
+
+					//google.maps.event.addListener(marker, 'mouseover', function() {
+							//if (currentInfoWindow) currentInfoWindow.close();
+							//currentInfoWindow = infowindow;
+							//infowindow.open(map, marker);
+							//});
+
+					//google.maps.event.addListener(marker, 'mouseout', function() {
+							//if (currentInfoWindow) currentInfoWindow.close();
+							//currentInfoWindow = null;
+							//infowindow.close();
+							//});
+			}
+
+			function clickMarker(infoIndex) {
+					google.maps.event.trigger(markers[infoIndex], "click");
+			}
 
 		var currentInfoWindow;
 		var markers = new Array();
@@ -176,73 +241,21 @@
 					new google.maps.LatLng(47.6238636, -122.29590189999999),
 					"Degustation, Egg with Caviar"
 				   );
-
-			}		
-
-			function codeAddress(point_of_interest, url, address, marker_position, notes) {
-					var contentString = 
-						'<div id="content">' + 
-						'<a href="' +
-						url +
-						'">' +
-						point_of_interest + 
-						'</a>' +
-						'<br />' + 
-						'<small>' +
-						address + 
-						'</small>' +
-						'<br /><br />' +
-						notes +
-						'</div>';
-
-					var infowindow = new google.maps.InfoWindow({
-					content: contentString
-					});
-
-					var marker = new google.maps.Marker({
-						map : map,
-						position : marker_position,
-						title : point_of_interest
-					});
-					
-					markers.push(marker);
-
-					google.maps.event.addListener(marker, 'click', function() {
-						if (currentInfoWindow) currentInfoWindow.close();
-						currentInfoWindow = infowindow;
-						infowindow.open(map, marker);
-					});
-
-					document.getElementById("place_list").innerHTML +=
-						'<p><a href="javascript:clickMarker(' + (markers.length-1) + ')">' +
-						point_of_interest +
-						'</a></p>';
-
-					//google.maps.event.addListener(marker, 'mouseover', function() {
-							//if (currentInfoWindow) currentInfoWindow.close();
-							//currentInfoWindow = infowindow;
-							//infowindow.open(map, marker);
-							//});
-
-					//google.maps.event.addListener(marker, 'mouseout', function() {
-							//if (currentInfoWindow) currentInfoWindow.close();
-							//currentInfoWindow = null;
-							//infowindow.close();
-							//});
-			}
-
-			function clickMarker(infoIndex) {
-					google.maps.event.trigger(markers[infoIndex], "click");
+			codeAddress(
+					"Green Leaf",
+					"http://greenleaftaste.com",
+					"418 8th Avenue South, Seattle, WA 98104, USA",
+					new google.maps.LatLng(47.5985433, -122.32234189999997),
+					"Spicy lemongrass shrimp, combo pho"
+				   );
+			codeAddress(
+					"Canlis",
+					"http://canlis.com",
+					"2576 Aurora Avenue North, Seattle, WA 98109, USA",
+					new google.maps.LatLng(47.642876, -122.34662300000002),
+					"Wagyu tenderloin, truffle fries, apple tarte tartin"
+				   );
 			}
 		</script>
-  </head>
-  <body onload="initialize()">
-    <div id="top_header">
-	    <br />
-	    <center>SEATTLE<small>-belle</small>VUE Best Eats</center>
-	    <br />
-    </div>
-    <div id="place_list"></div>
-    <div id="map_canvas" style="width:80%; float: right;"></div>
   </body>
 </html>
