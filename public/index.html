@@ -11,6 +11,7 @@
     	body { height: 100%; margin: 0; padding: 0; font-family:Arial, Helvetica, sans-serif }
 	#top_header { height:3em }
 	#place_list {width:20%; height: 100%; float:left; font-size:12px; text-align: right; }
+	#place_list p {margin: 0 0 0.8em; padding: 0; }
 	#place_list a:link {text-decoration:none; color: black;}
 	#place_list a:visited {text-decoration:none; color: black;}
 	#place_list a:hover {text-decoration:underline; color: blue;}
@@ -213,9 +214,9 @@
 					});
 
 					document.getElementById("place_list").innerHTML +=
-						'<a href="javascript:clickMarker(' + (markers.length-1) + ')">' +
+						'<p><a href="javascript:clickMarker(' + (markers.length-1) + ')">' +
 						point_of_interest +
-						'</a>&nbsp;&nbsp;<br />';
+						'</a></p>';
 
 					//google.maps.event.addListener(marker, 'mouseover', function() {
 							//if (currentInfoWindow) currentInfoWindow.close();
@@ -238,7 +239,7 @@
   <body onload="initialize()">
     <div id="top_header">
 	    <br />
-	    <center><b>SEATTLE<small>-belle</small>VUE Best Eats</b></center>
+	    <center>SEATTLE<small>-belle</small>VUE Best Eats</center>
 	    <br />
     </div>
     <div id="place_list"></div>
