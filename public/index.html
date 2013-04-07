@@ -11,7 +11,7 @@
     	body { height: 100%; margin: 0; padding: 0; font-family:Arial, Helvetica, sans-serif }
 	#top_header { height:3em }
 	#place_list {width:20%; height: 100%; float:left; font-size:12px; text-align: right; }
-	#place_list p {margin: 0 0 0.8em; padding: 0; }
+	#place_list p {margin: 0 0 0.6em; padding: 0; }
 	#place_list a:link {text-decoration:none; color: black;}
 	#place_list a:visited {text-decoration:none; color: black;}
 	#place_list a:hover {text-decoration:underline; color: blue;}
@@ -102,6 +102,13 @@
 			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
 			codeAddress(
+				"Harvest Vine",
+				"http://www.harvestvine.com",
+				"2701 East Madison Street, Seattle, WA 98112, USA",
+				new google.maps.LatLng(47.622527, -122.29711299999997),
+				"Everything!"
+				);
+			codeAddress(
 				"Cafe Lago", 
 				"http://www.cafelago.com",
 				"2305 24th Avenue East, Seattle, WA 98112, USA",
@@ -109,12 +116,19 @@
 				"Lasagna, brunch pizza"
 				);
 			codeAddress(
-				"Rancho Bravo", 
-				"http://www.facebook.com/pages/Rancho-Bravo-Tacos/117495694943999",
-				"1001 East Pine Street, Seattle, WA 98122, USA",
-				new google.maps.LatLng(47.614991, -122.319053),
-				"Al Pastor tacos, tamales"
-				);	
+				"Toulouse Petit",
+				"http://toulousepetit.com",
+				"601 Queen Anne Avenue North, Seattle, WA 98109, USA",
+				new google.maps.LatLng(47.6248327, -122.35711279999998),
+				"Jambalaya, beignets"
+				);
+			codeAddress(
+					"Metropolitan Grill",
+					"http://www.themetropolitangrill.com",
+					"820 2nd Avenue, Seattle, WA 98104, USA",
+					new google.maps.LatLng(47.6041537, -122.33418660000001),
+					"New York peppercorn steak, bananas foster"
+				   );
 			codeAddress(
 				"Ezell's Famous Chicken", 
 				"http://www.ezellschicken.com",
@@ -158,20 +172,6 @@
 				"Grand Marnier prawns, Penn Cove mussels & chorizo"
 			        );	
 			codeAddress(
-				"Harvest Vine",
-				"http://www.harvestvine.com",
-				"2701 East Madison Street, Seattle, WA 98112, USA",
-				new google.maps.LatLng(47.622527, -122.29711299999997),
-				"Everything!"
-				);
-			codeAddress(
-				"Toulouse Petit",
-				"http://toulousepetit.com",
-				"601 Queen Anne Avenue North, Seattle, WA 98109, USA",
-				new google.maps.LatLng(47.6248327, -122.35711279999998),
-				"Jambalaya, beignets"
-				);
-			codeAddress(
 				"Kickin' Boot Whiskey Kitchen",
 				"http://kickinboot.com",
 				"5309 22nd Avenue Northwest, Seattle, WA 98107, USA",
@@ -213,6 +213,13 @@
 				new google.maps.LatLng(47.66905449999999, -122.31319819999999),
 				"Kashk-e-Bademjan, joojeh kabob"
 				);
+			codeAddress(
+					"Salumi",
+					"http://www.salumicuredmeats.com/ourstorefront.htm",
+					"309 3rd Avenue South, Seattle, WA 98104, USA",
+					new google.maps.LatLng(47.5997614, -122.33041700000001),
+					"Finnochiona salami, grilled lamb sandwich"
+				   );
 			codeAddress(
 				"Shiro's Shushi",
 				"http://www.shiros.com",
